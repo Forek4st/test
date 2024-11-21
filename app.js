@@ -1,5 +1,7 @@
 const taskManager = JSON.parse(localStorage.getItem("taskManager")) || [];
-let idCounter = 0;
+let idCounter = localStorage.getItem("idCounter")
+  ? parseInt(localStorage.getItem("idCounter"), 10)
+  : 0;
 
 class Task {
   constructor(
@@ -16,6 +18,7 @@ class Task {
 
 const saveTasksToLocalStorage = () => {
   localStorage.setItem("taskManager", JSON.stringify(taskManager));
+  localStorage.setItem("idCounter", idCounter.toString());
 };
 
 const createTask = (taskDescription, isActive) => {
