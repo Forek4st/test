@@ -1,16 +1,13 @@
 const taskManager = JSON.parse(localStorage.getItem("taskManager")) || [];
+let idCounter = 0;
 
 class Task {
-  static idCounter = taskManager.length
-    ? Math.max(...taskManager.map((task) => task.id)) + 1
-    : 0;
-
   constructor(
     taskDescription = "",
     isActive = false,
     time = new Date().toLocaleString("es-MX")
   ) {
-    this.id = Task.idCounter++;
+    this.id = idCounter++;
     this.taskDescription = taskDescription.toUpperCase();
     this.isActive = isActive;
     this.time = time;
